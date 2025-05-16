@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Adicionar Dispositivo{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Adicionar Novo Dispositivo Mikrotik</h1>
+    </div>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nome Amigável</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="ip_address" class="form-label">Endereço IP</label>
+            <input type="text" class="form-control" id="ip_address" name="ip_address" required>
+        </div>
+        <div class="mb-3">
+            <label for="ssh_port" class="form-label">Porta SSH</label>
+            <input type="number" class="form-control" id="ssh_port" name="ssh_port" value="22" required>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuário SSH/API</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-success">Adicionar Dispositivo</button>
+    </form>
+{% endblock %}

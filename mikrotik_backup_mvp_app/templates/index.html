@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Dispositivos Mikrotik{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dispositivos Mikrotik</h1>
+    </div>
+    {% if devices %}
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Nome Amigável</th>
+                    <th>IP</th>
+                    <th>Porta SSH</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                <tr>
+                    <td>{{ device.name }}</td>
+                    <td>{{ device.ip_address }}</td>
+                    <td>{{ device.ssh_port }}</td>
+                    <td>{{ device.username }}</td>
+                    <td>
+                        <form action="{{ url_for('trigger_backup', device_id=device.id) }}" method="POST" style="display: inline-block;">
+                            <button type="submit" class="btn btn-sm btn-primary">Fazer Backup Agora</button>
+                        </form>
+                        <a href="{{ url_for('device_backups', device_id=device.id) }}" class="btn btn-sm btn-info">Ver Backups</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>Nenhum dispositivo adicionado ainda. <a href="{{ url_for('add_device') }}">Adicione um agora</a>.</p>
+    {% endif %}
+{% endblock %}
